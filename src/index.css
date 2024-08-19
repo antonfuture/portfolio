@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #0a0a0a;
+}
+
+.card-base {
+  @apply p-4 border border-accent rounded-md flex flex-col gap-2 justify-center bg-secondary transition-colors duration-300 ease-in-out hover:border-third
+}
+
+.section {
+  @apply mt-[96px]
+}
