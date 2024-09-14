@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "../../assets/icons/link";
 import GitHub from "../../assets/icons/github";
 import RainbowMetals from "../../assets/images/rainbowmetals.png";
@@ -6,6 +6,9 @@ import Tooledpro from "../../assets/images/tooledpro.png";
 import Musicbot from "../../assets/images/musicbot.png";
 import Discordinfo from "../../assets/images/discordinfo.png";
 import Lookupname from "../../assets/images/lookupname.png";
+import TempMail from "../../assets/images/tempmail.png";
+import TempMail2 from "../../assets/images/tempmail2.png";
+import TempMail3 from "../../assets/images/tempmail3.png";
 import Comingsoon from "../../assets/images/comingsoon.png";
 
 const Work = () => {
@@ -13,38 +16,61 @@ const Work = () => {
     {
       name: "Rainbow Metals",
       tagline: "A buckles and plaques shopping website and designer.",
-      img: RainbowMetals,
+      images: [RainbowMetals],
       link: "https://rainbowmetals.com/",
     },
     {
       name: "Tooled.pro",
       tagline: "A website for all your tooling needs and more.",
-      img: Tooledpro,
+      images: [Tooledpro],
       link: "https://tooled.pro/",
     },
     {
       name: "Lookup.name",
       tagline: "Find detailed information with lookup.name for all of your various needs.",
-      img: Lookupname,
+      images: [Lookupname],
       link: "https://lookup.name",
+    },
+    {
+      name: "Temp Mail",
+      tagline: "A temp mail generator website.",
+      images: [TempMail, TempMail2, TempMail3],
     },
     {
       name: "TetherVPN",
       tagline: "A fast and secure vpn with no logs and no tracking.",
-      img: Comingsoon,
+      images: [Comingsoon],
       link: "https://tethervpn.com/",
     },
     {
       name: "Music Bot",
       tagline: "A simple and modern music bot for discord with synced lyrics.",
-      img: Musicbot,
+      images: [Musicbot],
     },
     {
       name: "Discord Info API",
       tagline: "A user info api that gets information about the user from discord.",
-      img: Discordinfo,
+      images: [Discordinfo],
     },
   ];
+
+  const [currentIndex, setCurrentIndex] = useState(items.map(() => 0));
+
+  const handlePrev = (index) => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex.map((cur, idx) =>
+        idx === index ? (cur === 0 ? items[index].images.length - 1 : cur - 1) : cur
+      )
+    );
+  };
+
+  const handleNext = (index) => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex.map((cur, idx) =>
+        idx === index ? (cur === items[index].images.length - 1 ? 0 : cur + 1) : cur
+      )
+    );
+  };
 
   return (
     <>
@@ -96,17 +122,33 @@ const Work = () => {
           </div>
 
           <figure
-            className={`w-full h-full overflow-hidden ${
+            className={`w-full h-full relative overflow-hidden ${
               index % 2 === 1 ? "md:order-first" : ""
             }`}
           >
             <img
-              src={item.img}
+              src={item.images[currentIndex[index]]}
               alt={`${item.name} screenshot`}
               loading="lazy"
               draggable="false"
               className="object-cover w-full rounded-md border border-white/10"
             />
+            {item.images.length > 1 && (
+              <button
+                onClick={() => handlePrev(index)}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-secondary border border-accent text-white p-2 rounded"
+              >
+                {"<"}
+              </button>
+            )}
+            {item.images.length > 1 && (
+              <button
+                onClick={() => handleNext(index)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-secondary border border-accent text-white p-2 rounded"
+              >
+                {">"}
+              </button>
+            )}
           </figure>
         </section>
       ))}
