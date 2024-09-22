@@ -23,7 +23,7 @@ const Work = () => {
       name: "Tooled.pro",
       tagline: "A website for all your tooling needs and more.",
       images: [Tooledpro],
-      link: "https://tooled.pro/",
+      link: "https://tooled.pro",
     },
     {
       name: "Lookup.name",
@@ -35,12 +35,13 @@ const Work = () => {
       name: "Temp Mail",
       tagline: "A temp mail generator website.",
       images: [TempMail, TempMail2, TempMail3],
+      link: "https://tempmail.wtf",
     },
     {
       name: "TetherVPN",
       tagline: "A fast and secure vpn with no logs and no tracking.",
       images: [Comingsoon],
-      link: "https://tethervpn.com/",
+      link: "https://tethervpn.com",
     },
     {
       name: "Music Bot",
